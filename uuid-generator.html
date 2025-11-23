@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur UUID / GUID gratuit - PWTools</title>
+    <meta name="description" content="Générez des identifiants uniques universels (UUID v4) pour vos projets. Gratuit, rapide et privé. Générez en masse ou un par un.">
+    <meta name="keywords" content="générateur uuid, guid generator, identifiant unique, uuid v4, générateur guid gratuit">
+    
+    <meta property="og:title" content="Générateur UUID / GUID - PWTools">
+    <meta property="og:description" content="Créez des identifiants uniques universels instantanément.">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="/#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-indigo-600 transition">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="/#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <nav class="mb-6 text-sm text-gray-600">
+                <a href="/" class="hover:text-indigo-600">Accueil</a> / 
+                <span class="text-gray-900">Générateur UUID</span>
+            </nav>
+
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-fingerprint text-green-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Générateur UUID / GUID</h1>
+                <p class="text-xl text-gray-600">
+                    Créez des identifiants uniques universels (UUID v4) pour vos projets et applications.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">UUID généré :</label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="uuid-output" 
+                            readonly 
+                            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-lg"
+                            value=""
+                            aria-label="UUID généré"
+                        >
+                        <button 
+                            id="copy-btn" 
+                            class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                            aria-label="Copier"
+                        >
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <p id="copy-feedback" class="text-sm text-green-600 mt-2 hidden">
+                        <i class="fas fa-check"></i> Copié !
+                    </p>
+                </div>
+
+                <div class="flex gap-3 mb-6">
+                    <button 
+                        id="generate-one-btn" 
+                        class="flex-1 bg-gradient-to-r from-green-600 to-teal-600 text-white py-3 rounded-lg font-semibold hover:from-green-700 hover:to-teal-700 transition"
+                    >
+                        <i class="fas fa-sync-alt mr-2"></i> Générer un UUID
+                    </button>
+                    
+                    <button 
+                        id="generate-bulk-btn" 
+                        class="flex-1 bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:from-teal-700 hover:to-cyan-700 transition"
+                    >
+                        <i class="fas fa-list mr-2"></i> Générer en masse
+                    </button>
+                </div>
+
+                <!-- Bulk Generation -->
+                <div id="bulk-section" class="hidden">
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2">
+                            Nombre d'UUIDs à générer (1-100) :
+                        </label>
+                        <input 
+                            type="number" 
+                            id="bulk-count" 
+                            min="1" 
+                            max="100" 
+                            value="10"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                        >
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2">Format :</label>
+                        <select id="format-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                            <option value="standard">Standard (avec tirets)</option>
+                            <option value="compact">Compact (sans tirets)</option>
+                            <option value="uppercase">Majuscules</option>
+                            <option value="braces">Avec accolades</option>
+                        </select>
+                    </div>
+                    
+                    <textarea 
+                        id="bulk-output" 
+                        readonly
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-sm h-64 mb-3"
+                        placeholder="Les UUIDs générés apparaîtront ici..."
+                    ></textarea>
+                    
+                    <div class="flex gap-2">
+                        <button 
+                            id="copy-bulk-btn" 
+                            class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+                        >
+                            <i class="fas fa-copy mr-2"></i> Copier tout
+                        </button>
+                        <button 
+                            id="download-btn" 
+                            class="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+                        >
+                            <i class="fas fa-download mr-2"></i> Télécharger (.txt)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold mb-6">
+                    <i class="fas fa-info-circle text-green-600 mr-2"></i>
+                    Qu'est-ce qu'un UUID ?
+                </h2>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Un <strong>UUID (Universally Unique Identifier)</strong> ou <strong>GUID (Globally Unique Identifier)</strong> 
+                        est un identifiant unique de 128 bits utilisé en informatique pour identifier de manière unique des informations 
+                        sans coordination centralisée.
+                    </p>
+                    
+                    <p>
+                        Format : <code class="bg-gray-100 px-2 py-1 rounded">xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code>
+                    </p>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <p class="font-semibold mb-2">Utilisations courantes :</p>
+                        <ul class="space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Identifiants de base de données</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Clés de session et tokens</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Identifiants de fichiers et ressources</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>IDs d'objets dans les API REST</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-sm">
+                        <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                        Nos UUIDs sont générés avec <code>crypto.randomUUID()</code> pour une randomisation cryptographiquement sécurisée.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 PWTools. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/uuid-generator.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

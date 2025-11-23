@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de phrase de passe Diceware - PWTools</title>
+    <meta name="description" content="Générez des phrases de passe mémorables et sécurisées avec la méthode Diceware. Plus facile à retenir, tout aussi sécurisé. Gratuit et privé.">
+    <meta name="keywords" content="diceware, phrase de passe, passphrase generator, mot de passe mémorable">
+    
+    <meta property="og:title" content="Générateur de phrase de passe Diceware - PWTools">
+    <meta property="og:description" content="Créez des phrases de passe sécurisées et faciles à retenir.">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="/#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-indigo-600 transition">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="/#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <nav class="mb-6 text-sm text-gray-600">
+                <a href="/" class="hover:text-indigo-600">Accueil</a> / 
+                <span class="text-gray-900">Générateur Diceware</span>
+            </nav>
+
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-dice text-purple-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Générateur de phrase de passe</h1>
+                <p class="text-xl text-gray-600">
+                    Créez des phrases de passe mémorables et sécurisées avec la méthode Diceware.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">Votre phrase de passe :</label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="passphrase-output" 
+                            readonly 
+                            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-lg"
+                            value="Cliquez sur 'Générer'"
+                            aria-label="Phrase de passe générée"
+                        >
+                        <button 
+                            id="copy-btn" 
+                            class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+                            aria-label="Copier"
+                        >
+                            <i class="fas fa-copy"></i> Copier
+                        </button>
+                    </div>
+                    <p id="copy-feedback" class="text-sm text-green-600 mt-2 hidden">
+                        <i class="fas fa-check"></i> Copié !
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <label class="flex justify-between text-sm font-semibold mb-2">
+                        <span>Nombre de mots : <span id="word-count-value">5</span></span>
+                    </label>
+                    <input 
+                        type="range" 
+                        id="word-count" 
+                        min="4" 
+                        max="8" 
+                        value="5" 
+                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                        aria-label="Nombre de mots"
+                    >
+                    <p class="text-xs text-gray-600 mt-2">Plus de mots = plus sécurisé mais plus long à retenir</p>
+                </div>
+
+                <div class="mb-6">
+                    <label class="flex items-center space-x-3 cursor-pointer">
+                        <input type="checkbox" id="capitalize" checked class="w-5 h-5 text-purple-600">
+                        <span>Mettre la première lettre en majuscule</span>
+                    </label>
+                </div>
+
+                <div class="mb-6">
+                    <label class="flex items-center space-x-3 cursor-pointer">
+                        <input type="checkbox" id="add-numbers" class="w-5 h-5 text-purple-600">
+                        <span>Ajouter des chiffres à la fin</span>
+                    </label>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">Séparateur :</label>
+                    <select id="separator" class="px-4 py-2 border border-gray-300 rounded-lg">
+                        <option value="-">Tiret (-)</option>
+                        <option value=" ">Espace</option>
+                        <option value="_">Underscore (_)</option>
+                        <option value=".">Point (.)</option>
+                        <option value="">Aucun</option>
+                    </select>
+                </div>
+
+                <button 
+                    id="generate-btn" 
+                    class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg"
+                >
+                    <i class="fas fa-dice mr-2"></i> Générer une phrase de passe
+                </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold mb-6">
+                    <i class="fas fa-question-circle text-purple-600 mr-2"></i>
+                    Qu'est-ce que Diceware ?
+                </h2>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Diceware est une méthode de création de phrases de passe (passphrases) qui combine plusieurs mots aléatoires 
+                        pour créer un mot de passe à la fois <strong>sécurisé et mémorable</strong>.
+                    </p>
+                    
+                    <p>
+                        Exemple : <code class="bg-gray-100 px-2 py-1 rounded">Cheval-Batterie-Agrafes-Correct</code> 
+                        est beaucoup plus facile à retenir que <code class="bg-gray-100 px-2 py-1 rounded">Tr0ub4dor&3</code> 
+                        tout en étant plus sécurisé.
+                    </p>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                        <p class="font-semibold mb-2">Pourquoi c'est sécurisé ?</p>
+                        <ul class="space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>5 mots aléatoires = environ 64 bits d'entropie</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Impossible à deviner par force brute</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Résiste aux attaques par dictionnaire</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">PW</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">PWTools</span>
+                    </div>
+                    <p class="text-sm">Votre boîte à outils gratuite pour la sécurité et la productivité.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Liens rapides</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Accueil</a></li>
+                        <li><a href="/#tools" class="hover:text-white transition">Tous les outils</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Confidentialité</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Outils populaires</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="password-generator.html" class="hover:text-white transition">Générateur de mot de passe</a></li>
+                        <li><a href="password-tester.html" class="hover:text-white transition">Testeur de force</a></li>
+                        <li><a href="diceware.html" class="hover:text-white transition">Phrase de passe</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4 text-2xl">
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-github"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2025 PWTools. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/diceware.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

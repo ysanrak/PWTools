@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encodeur Décodeur Base64 en ligne - PWTools</title>
+    <meta name="description" content="Encodez et décodez vos chaînes de caractères en Base64 gratuitement. Outil en ligne rapide, sécurisé et privé. Aucun stockage de données.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, encodeur base64, décodeur base64 gratuit, convertir base64">
+    
+    <meta property="og:title" content="Encodeur / Décodeur Base64 - PWTools">
+    <meta property="og:description" content="Encodez et décodez en Base64 instantanément et gratuitement.">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="/#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-indigo-600 transition">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="/#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-5xl mx-auto">
+            <nav class="mb-6 text-sm text-gray-600">
+                <a href="/" class="hover:text-indigo-600">Accueil</a> / 
+                <span class="text-gray-900">Base64 Encoder/Decoder</span>
+            </nav>
+
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-code text-blue-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Encodeur / Décodeur Base64</h1>
+                <p class="text-xl text-gray-600">
+                    Encodez et décodez vos chaînes de caractères en Base64 instantanément.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Encoder -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-arrow-right text-blue-600 mr-3"></i>
+                        Encoder
+                    </h2>
+                    
+                    <label class="block text-sm font-semibold mb-2">Texte à encoder :</label>
+                    <textarea 
+                        id="encode-input" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 font-mono text-sm h-48"
+                        placeholder="Entrez votre texte ici..."
+                    ></textarea>
+                    
+                    <button 
+                        id="encode-btn" 
+                        class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition mb-3"
+                    >
+                        <i class="fas fa-lock mr-2"></i> Encoder en Base64
+                    </button>
+                    
+                    <label class="block text-sm font-semibold mb-2">Résultat Base64 :</label>
+                    <textarea 
+                        id="encode-output" 
+                        readonly
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-sm h-48 mb-3"
+                        placeholder="Le résultat apparaîtra ici..."
+                    ></textarea>
+                    
+                    <button 
+                        id="copy-encode-btn" 
+                        class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                    >
+                        <i class="fas fa-copy mr-2"></i> Copier
+                    </button>
+                </div>
+
+                <!-- Decoder -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-arrow-left text-cyan-600 mr-3"></i>
+                        Décoder
+                    </h2>
+                    
+                    <label class="block text-sm font-semibold mb-2">Base64 à décoder :</label>
+                    <textarea 
+                        id="decode-input" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 font-mono text-sm h-48"
+                        placeholder="Entrez votre chaîne Base64 ici..."
+                    ></textarea>
+                    
+                    <button 
+                        id="decode-btn" 
+                        class="w-full bg-gradient-to-r from-cyan-600 to-teal-600 text-white py-3 rounded-lg font-semibold hover:from-cyan-700 hover:to-teal-700 transition mb-3"
+                    >
+                        <i class="fas fa-unlock mr-2"></i> Décoder Base64
+                    </button>
+                    
+                    <label class="block text-sm font-semibold mb-2">Texte décodé :</label>
+                    <textarea 
+                        id="decode-output" 
+                        readonly
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-sm h-48 mb-3"
+                        placeholder="Le résultat apparaîtra ici..."
+                    ></textarea>
+                    
+                    <button 
+                        id="copy-decode-btn" 
+                        class="w-full bg-cyan-600 text-white py-2 rounded-lg hover:bg-cyan-700 transition"
+                    >
+                        <i class="fas fa-copy mr-2"></i> Copier
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8 mt-8">
+                <h2 class="text-2xl font-bold mb-6">
+                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                    À propos de Base64
+                </h2>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        <strong>Base64</strong> est un système d'encodage qui convertit des données binaires en texte ASCII. 
+                        Il utilise 64 caractères différents (A-Z, a-z, 0-9, +, /) pour représenter les données.
+                    </p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <p class="font-semibold mb-2">Utilisations courantes :</p>
+                        <ul class="space-y-2 text-sm">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Transmission de données binaires par email</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Encodage d'images dans HTML/CSS (Data URIs)</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Stockage de données dans JSON ou XML</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Authentification HTTP Basic</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-sm">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i>
+                        <strong>Note :</strong> Base64 n'est PAS une méthode de chiffrement. Les données encodées peuvent être facilement décodées. 
+                        N'utilisez pas Base64 pour protéger des données sensibles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 PWTools. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/base64.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

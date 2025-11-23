@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'IMC gratuit - Indice de Masse Corporelle - PWTools</title>
+    <meta name="description" content="Calculez votre IMC (Indice de Masse Corporelle) gratuitement. Obtenez votre poids idéal et des recommandations santé personnalisées.">
+    <meta name="keywords" content="calcul imc, calculateur imc gratuit, indice masse corporelle, calculer poids idéal, bmi calculator">
+    
+    <meta property="og:title" content="Calculateur IMC - PWTools">
+    <meta property="og:description" content="Calculez votre Indice de Masse Corporelle et obtenez des recommandations santé.">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="/#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-indigo-600 transition">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="/#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <nav class="mb-6 text-sm text-gray-600">
+                <a href="/" class="hover:text-indigo-600">Accueil</a> / 
+                <span class="text-gray-900">Calculateur IMC</span>
+            </nav>
+
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-heartbeat text-red-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Calculateur d'IMC</h1>
+                <p class="text-xl text-gray-600">
+                    Calculez votre Indice de Masse Corporelle et obtenez des recommandations santé.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <!-- Input -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Poids (kg) :</label>
+                        <input 
+                            type="number" 
+                            id="weight-input" 
+                            min="20" 
+                            max="300" 
+                            step="0.1"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg"
+                            placeholder="70"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Taille (cm) :</label>
+                        <input 
+                            type="number" 
+                            id="height-input" 
+                            min="100" 
+                            max="250" 
+                            step="0.1"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg"
+                            placeholder="170"
+                        >
+                    </div>
+                </div>
+
+                <button 
+                    id="calculate-btn" 
+                    class="w-full bg-gradient-to-r from-red-600 to-pink-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-red-700 hover:to-pink-700 transition shadow-lg"
+                >
+                    <i class="fas fa-calculator mr-2"></i> Calculer mon IMC
+                </button>
+
+                <!-- Result -->
+                <div id="result-section" class="mt-8 hidden">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl font-bold mb-2" id="bmi-value">--</div>
+                        <div class="text-xl font-semibold mb-4" id="bmi-category">--</div>
+                        <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                            <div id="bmi-bar" class="h-4 transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div id="bmi-interpretation" class="p-6 rounded-lg mb-6">
+                        <!-- Dynamic content -->
+                    </div>
+
+                    <!-- BMI Chart -->
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-4">Classification de l'IMC (OMS) :</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between p-2 bg-blue-100 rounded">
+                                <span>Insuffisance pondérale</span>
+                                <span class="font-semibold">&lt; 18.5</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-green-100 rounded">
+                                <span>Poids normal</span>
+                                <span class="font-semibold">18.5 - 24.9</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-yellow-100 rounded">
+                                <span>Surpoids</span>
+                                <span class="font-semibold">25 - 29.9</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-orange-100 rounded">
+                                <span>Obésité modérée</span>
+                                <span class="font-semibold">30 - 34.9</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-red-100 rounded">
+                                <span>Obésité sévère</span>
+                                <span class="font-semibold">&ge; 35</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold mb-6">
+                    <i class="fas fa-info-circle text-red-600 mr-2"></i>
+                    À propos de l'IMC
+                </h2>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        L'<strong>IMC (Indice de Masse Corporelle)</strong> ou <strong>BMI (Body Mass Index)</strong> 
+                        est un indicateur utilisé pour évaluer la corpulence d'une personne en fonction de sa taille et de son poids.
+                    </p>
+                    
+                    <p>
+                        <strong>Formule :</strong> <code class="bg-gray-100 px-2 py-1 rounded">IMC = Poids (kg) / (Taille (m))²</code>
+                    </p>
+                    
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <p class="font-semibold mb-2"><i class="fas fa-exclamation-triangle text-red-600 mr-2"></i>Limitations :</p>
+                        <ul class="space-y-2 text-sm">
+                            <li>• L'IMC ne distingue pas la masse musculaire de la masse grasse</li>
+                            <li>• Ne convient pas aux femmes enceintes, enfants, athlètes de haut niveau</li>
+                            <li>• Doit être interprété avec d'autres indicateurs de santé</li>
+                            <li>• Consultez un professionnel de santé pour un diagnostic personnalisé</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 PWTools. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/bmi-calculator.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

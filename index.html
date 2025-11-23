@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWTools - Outils gratuits de sécurité et productivité en ligne</title>
+    <meta name="description" content="PWTools : générateur de mot de passe sécurisé, testeur de force, outils développeur gratuits. Base64, UUID, QR code, JSON formatter et plus. 100% privé, aucun stockage.">
+    <meta name="keywords" content="générateur mot de passe gratuit, testeur mot de passe fort, outil sécurité password, base64 encode decode, générateur uuid, qr code generator">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="PWTools - Outils gratuits de sécurité et productivité">
+    <meta property="og:description" content="Collection d'outils gratuits pour la sécurité des mots de passe et la productivité des développeurs. 100% client-side, privé et sécurisé.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pwtools.com">
+    <meta property="og:image" content="https://pwtools.com/assets/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PWTools - Outils gratuits de sécurité">
+    <meta name="twitter:description" content="Générateur de mot de passe, testeur de force, UUID, Base64, QR code et plus.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#06B6D4',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-indigo-600 transition">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- AdSense Header Banner Placeholder -->
+    <div class="bg-gray-100 border-b border-gray-200">
+        <div class="container mx-auto px-4 py-2 text-center text-sm text-gray-500">
+            <!-- AdSense Header Banner 728x90 or responsive -->
+            <div class="adsense-placeholder min-h-[90px] flex items-center justify-center">
+                <span class="text-xs">[AdSense Header Banner]</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-cyan-600 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">PWTools</h1>
+            <p class="text-xl md:text-2xl mb-8 text-indigo-100">
+                Boîte à outils gratuite pour la sécurité et la productivité
+            </p>
+            <p class="text-lg mb-10 max-w-2xl mx-auto text-indigo-50">
+                Générez des mots de passe sécurisés, testez leur force, et utilisez des outils essentiels pour développeurs. 
+                100% gratuit, privé et sans stockage de données.
+            </p>
+            <a href="#tools" class="inline-block bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition shadow-lg">
+                Découvrir les outils <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section id="tools" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Nos outils gratuits</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Tous nos outils fonctionnent directement dans votre navigateur. Aucune donnée n'est envoyée à nos serveurs.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Password Generator -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-key text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Générateur de mot de passe</h3>
+                    <p class="text-gray-600 mb-4">
+                        Créez des mots de passe forts et aléatoires avec options personnalisables (longueur, symboles, chiffres).
+                    </p>
+                    <a href="password-generator.html" class="inline-block bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Password Strength Tester -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Testeur de force de mot de passe</h3>
+                    <p class="text-gray-600 mb-4">
+                        Évaluez instantanément la robustesse de vos mots de passe avec feedback détaillé.
+                    </p>
+                    <a href="password-tester.html" class="inline-block bg-cyan-600 text-white px-6 py-2 rounded-lg hover:bg-cyan-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Diceware Generator -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-dice text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Générateur de phrase de passe</h3>
+                    <p class="text-gray-600 mb-4">
+                        Générez des phrases de passe mémorables et sécurisées (méthode Diceware).
+                    </p>
+                    <a href="diceware.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- UUID Generator -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-fingerprint text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Générateur UUID / GUID</h3>
+                    <p class="text-gray-600 mb-4">
+                        Créez des identifiants uniques universels (UUID v4) pour vos projets.
+                    </p>
+                    <a href="uuid-generator.html" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Base64 Encoder/Decoder -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Encodeur / Décodeur Base64</h3>
+                    <p class="text-gray-600 mb-4">
+                        Encodez et décodez vos chaînes de caractères en Base64 instantanément.
+                    </p>
+                    <a href="base64.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- QR Code Generator -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-qrcode text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Générateur de QR Code</h3>
+                    <p class="text-gray-600 mb-4">
+                        Créez des codes QR personnalisés pour URLs, textes, contacts et plus.
+                    </p>
+                    <a href="qr-generator.html" class="inline-block bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- JSON Formatter -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-brackets-curly text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Formateur JSON</h3>
+                    <p class="text-gray-600 mb-4">
+                        Formatez, validez et embellissez vos données JSON facilement.
+                    </p>
+                    <a href="json-formatter.html" class="inline-block bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- BMI Calculator -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-heartbeat text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Calculateur d'IMC</h3>
+                    <p class="text-gray-600 mb-4">
+                        Calculez votre Indice de Masse Corporelle et obtenez des recommandations santé.
+                    </p>
+                    <a href="bmi-calculator.html" class="inline-block bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Word Counter -->
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition border border-gray-200">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-text-height text-teal-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Compteur de mots</h3>
+                    <p class="text-gray-600 mb-4">
+                        Comptez les mots, caractères, phrases et paragraphes de vos textes.
+                    </p>
+                    <a href="word-counter.html" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition">
+                        Ouvrir <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Inline Banner -->
+    <div class="bg-gray-100 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <!-- AdSense Inline Banner responsive -->
+            <div class="adsense-placeholder min-h-[100px] flex items-center justify-center bg-white rounded-lg border border-gray-200">
+                <span class="text-xs text-gray-500">[AdSense Inline Banner]</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Pourquoi choisir PWTools ?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">100% Privé</h3>
+                    <p class="text-gray-600">
+                        Tous les outils fonctionnent localement dans votre navigateur. Aucune donnée n'est envoyée à nos serveurs.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Rapide et léger</h3>
+                    <p class="text-gray-600">
+                        Interface optimisée pour un chargement instantané et une utilisation fluide sur tous les appareils.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gift text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Gratuit et sans pub intrusive</h3>
+                    <p class="text-gray-600">
+                        Accès illimité à tous les outils, gratuitement. Publicités discrètes pour soutenir le projet.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">PW</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">PWTools</span>
+                    </div>
+                    <p class="text-sm">
+                        Votre boîte à outils gratuite pour la sécurité et la productivité.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Liens rapides</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Accueil</a></li>
+                        <li><a href="#tools" class="hover:text-white transition">Tous les outils</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition">Guide & Blog</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Confidentialité</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Tools -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Outils populaires</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="password-generator.html" class="hover:text-white transition">Générateur de mot de passe</a></li>
+                        <li><a href="password-tester.html" class="hover:text-white transition">Testeur de force</a></li>
+                        <li><a href="uuid-generator.html" class="hover:text-white transition">Générateur UUID</a></li>
+                        <li><a href="base64.html" class="hover:text-white transition">Base64 Encoder</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4 text-2xl">
+                        <a href="https://twitter.com/pwtools" class="hover:text-cyan-400 transition" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/pwtools" class="hover:text-cyan-400 transition" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://facebook.com/pwtools" class="hover:text-cyan-400 transition" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <a href="contact.html" class="text-sm hover:text-white transition">
+                            <i class="fas fa-envelope mr-2"></i>Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2025 PWTools. Tous droits réservés. | 
+                    <a href="privacy.html" class="hover:text-white transition">Politique de confidentialité</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide sécurité et blog - PWTools</title>
+    <meta name="description" content="Guides et conseils pour créer des mots de passe sécurisés, protéger vos comptes et utiliser nos outils. Blog sécurité informatique.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="/#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-indigo-600 font-semibold">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="/#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl font-bold mb-4 text-center">Guide & Blog Sécurité</h1>
+            <p class="text-xl text-gray-600 text-center mb-12">
+                Conseils, astuces et bonnes pratiques pour protéger vos données en ligne
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-br from-indigo-500 to-purple-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-key text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Comment créer un mot de passe fort en 2025 ?</h2>
+                        <p class="text-gray-600 mb-4">
+                            Découvrez les meilleures pratiques pour créer des mots de passe impossibles à deviner. 
+                            Longueur, complexité, unicité : tous nos conseils d'experts.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>23 novembre 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-br from-cyan-500 to-blue-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Les gestionnaires de mots de passe : pourquoi et comment ?</h2>
+                        <p class="text-gray-600 mb-4">
+                            Gérez des centaines de mots de passe uniques sans effort. Comparatif des meilleurs gestionnaires : 
+                            1Password, Bitwarden, LastPass, Dashlane.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>20 novembre 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-br from-green-500 to-teal-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-user-shield text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Authentification à deux facteurs (2FA) : le guide complet</h2>
+                        <p class="text-gray-600 mb-4">
+                            Renforcez la sécurité de vos comptes avec la 2FA. SMS, application, clé physique : 
+                            quelle méthode choisir pour protéger vos données ?
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>18 novembre 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-br from-red-500 to-pink-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-exclamation-triangle text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Les 10 erreurs de sécurité les plus courantes</h2>
+                        <p class="text-gray-600 mb-4">
+                            Évitez ces pièges courants : réutilisation de mots de passe, phishing, Wi-Fi public non sécurisé. 
+                            Apprenez à identifier et éviter les menaces.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>15 novembre 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-br from-yellow-500 to-orange-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-dice text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Diceware vs mots de passe classiques : le comparatif</h2>
+                        <p class="text-gray-600 mb-4">
+                            Les phrases de passe sont-elles plus sûres ? Analyse détaillée de la méthode Diceware et 
+                            comparaison avec les mots de passe alphanumériques traditionnels.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>12 novembre 2025</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-br from-purple-500 to-indigo-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-database text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Que faire si vos données ont fuité ?</h2>
+                        <p class="text-gray-600 mb-4">
+                            Votre email apparaît dans une fuite de données ? Vérifiez sur Have I Been Pwned et suivez notre 
+                            checklist pour sécuriser vos comptes immédiatement.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>10 novembre 2025</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="mt-16 bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-lg p-12 text-center text-white">
+                <h2 class="text-3xl font-bold mb-4">Prêt à sécuriser vos comptes ?</h2>
+                <p class="text-xl mb-8">Utilisez nos outils gratuits pour générer et tester vos mots de passe</p>
+                <a href="/" class="inline-block bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Découvrir les outils <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 PWTools. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

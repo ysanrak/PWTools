@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de QR Code gratuit en ligne - PWTools</title>
+    <meta name="description" content="Créez des codes QR gratuitement pour URLs, textes, contacts et plus. Téléchargez en PNG ou SVG. Générateur QR code simple et rapide.">
+    <meta name="keywords" content="générateur qr code gratuit, créer qr code, qr code generator, générer code qr en ligne">
+    
+    <meta property="og:title" content="Générateur de QR Code - PWTools">
+    <meta property="og:description" content="Créez des codes QR personnalisés gratuitement.">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PW</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PWTools</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="/#tools" class="text-gray-700 hover:text-indigo-600 transition">Outils</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-indigo-600 transition">Guide</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="/" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="/#tools" class="block text-gray-700 hover:text-indigo-600 py-2">Outils</a>
+                <a href="blog.html" class="block text-gray-700 hover:text-indigo-600 py-2">Guide</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-indigo-600 py-2">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <nav class="mb-6 text-sm text-gray-600">
+                <a href="/" class="hover:text-indigo-600">Accueil</a> / 
+                <span class="text-gray-900">Générateur QR Code</span>
+            </nav>
+
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-qrcode text-pink-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Générateur de QR Code</h1>
+                <p class="text-xl text-gray-600">
+                    Créez des codes QR personnalisés pour URLs, textes, contacts et plus.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Left: Input -->
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Type de contenu :</label>
+                        <select id="qr-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4">
+                            <option value="text">Texte</option>
+                            <option value="url">URL / Lien</option>
+                            <option value="email">Email</option>
+                            <option value="phone">Téléphone</option>
+                            <option value="sms">SMS</option>
+                            <option value="wifi">WiFi</option>
+                        </select>
+
+                        <label class="block text-sm font-semibold mb-2">Contenu :</label>
+                        <textarea 
+                            id="qr-input" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 h-32"
+                            placeholder="Entrez le texte, URL ou autre contenu..."
+                        ></textarea>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold mb-2">Taille :</label>
+                            <select id="qr-size" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                                <option value="128">Petit (128x128)</option>
+                                <option value="256" selected>Moyen (256x256)</option>
+                                <option value="512">Grand (512x512)</option>
+                            </select>
+                        </div>
+
+                        <button 
+                            id="generate-qr-btn" 
+                            class="w-full bg-gradient-to-r from-pink-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-pink-700 hover:to-purple-700 transition"
+                        >
+                            <i class="fas fa-qrcode mr-2"></i> Générer le QR Code
+                        </button>
+                    </div>
+
+                    <!-- Right: QR Code Display -->
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Votre QR Code :</label>
+                        <div class="border-2 border-gray-200 rounded-lg p-6 bg-white flex items-center justify-center min-h-[300px]">
+                            <div id="qrcode" class="inline-block"></div>
+                            <div id="qr-placeholder" class="text-center text-gray-400">
+                                <i class="fas fa-qrcode text-6xl mb-3"></i>
+                                <p>Le QR code apparaîtra ici</p>
+                            </div>
+                        </div>
+
+                        <button 
+                            id="download-qr-btn" 
+                            class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 transition mt-4 hidden"
+                        >
+                            <i class="fas fa-download mr-2"></i> Télécharger PNG
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold mb-6">
+                    <i class="fas fa-info-circle text-pink-600 mr-2"></i>
+                    À propos des QR Codes
+                </h2>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Un <strong>QR Code (Quick Response Code)</strong> est un code-barres bidimensionnel qui peut stocker 
+                        différents types d'informations : URLs, textes, coordonnées, configurations WiFi, etc.
+                    </p>
+                    
+                    <div class="bg-pink-50 p-4 rounded-lg border border-pink-200">
+                        <p class="font-semibold mb-2">Utilisations courantes :</p>
+                        <ul class="space-y-2 text-sm">
+                            <li><i class="fas fa-check text-pink-600 mr-2"></i>Partager des liens web rapidement</li>
+                            <li><i class="fas fa-check text-pink-600 mr-2"></i>Connexion WiFi instantanée</li>
+                            <li><i class="fas fa-check text-pink-600 mr-2"></i>Cartes de visite numériques</li>
+                            <li><i class="fas fa-check text-pink-600 mr-2"></i>Paiements mobiles</li>
+                            <li><i class="fas fa-check text-pink-600 mr-2"></i>Tickets et billets électroniques</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-sm">
+                        <i class="fas fa-mobile-alt text-pink-600 mr-2"></i>
+                        Les QR codes peuvent être scannés avec l'appareil photo de n'importe quel smartphone moderne.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 PWTools. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/qr-generator.js"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
